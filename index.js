@@ -1,8 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
+
+app.use(cors({origin: "*"}));
 
 mongoose.connect('mongodb+srv://pesams015:pesams15@cluster0.ezhomhu.mongodb.net/Bagwithtoyo?retryWrites=true&w=majority', {
     useNewUrlParser: true,
