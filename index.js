@@ -30,6 +30,15 @@ app.post('/persons', async (req, res) => {
     }
 });
 
+app.get('/persons', async (req, res) => {
+    try {
+        const persons = await Person.find();
+        res.json(persons);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 app.patch('/persons/:id/status', async (req, res) => {
     try {
         const { id } = req.params;
