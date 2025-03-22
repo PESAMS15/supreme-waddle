@@ -42,6 +42,18 @@ app.get('/persons', async (req, res) => {
     }
 });
 
+app.post("/deleteperson", async(req, res)=>{
+    try{
+        const {id} = req.body;
+        const person = await Person.findByIdAndDelete(id);
+        res.json(person);
+    }catch(err){
+        res.status(400).json({ error: err.message });
+    }
+    
+
+})
+
 app.patch('/persons/:id/status', async (req, res) => {
     try {
         const { id } = req.params;
