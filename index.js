@@ -17,7 +17,7 @@ const PersonSchema = new mongoose.Schema({
     name: { type: String, required: true },
     location: { type: String, required: true },
     amount: { type: Number, required: true },
-    status: { type: String, enum: ['pending', 'confirmed', "processing", "claimed"], default: 'pending' }
+    status: { type: String, enum: ['pending', 'terminated', "processing", "confirmed"], default: 'pending' }
 });
 
 const Person = mongoose.model('Person', PersonSchema);
