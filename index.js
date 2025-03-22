@@ -17,7 +17,7 @@ const PersonSchema = new mongoose.Schema({
     name: { type: String, required: true },
     location: { type: String, required: true },
     amount: { type: Number, required: true },
-    status: { type: String, enum: ['pedning', 'confirmed'], default: 'pending' }
+    status: { type: String, enum: ['pending', 'confirmed', "processing", "claimed"], default: 'pending' }
 });
 
 const Person = mongoose.model('Person', PersonSchema);
@@ -45,7 +45,7 @@ app.get('/persons', async (req, res) => {
 app.patch('/persons/:id/status', async (req, res) => {
     try {
         const { id } = req.params;
-        const { status } = req.body;
+        const { status } = req.body;    
         const person = await Person.findByIdAndUpdate(id, { status }, { new: true });
         if (!person) return res.status(404).json({ error: 'Person not found' });
         res.json(person);
